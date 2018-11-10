@@ -1,0 +1,42 @@
+<!-- The table for products -->
+
+<section class="section">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <p class="subtitle is-5">
+        <strong>Filter by : </strong>
+      </p>
+    </div>
+    <div class="level-item">
+      <div class="field has-addons">
+        <p class="control">
+          <input class="input" type="text" placeholder="Find a product">
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<table class="table is-bordered is-fullwidth is-hoverable" *ngIf='gokartProductList && gokartProductList.length'>
+  <thead>
+    <tr>
+      <th><button class="button is-rounded is-danger is-outlined">Show Image</button></th>
+      <th>Product</th>
+      <th>Code</th>
+      <th>Available</th>
+      <th>Price</th>
+      <th>Star</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- to be populated from gokart-list.component.ts -->
+    <tr *ngFor='let products of gokartProductList'>
+      <td></td>
+      <td>{{products.productName}}</td>
+      <td>{{products.productCode}}</td>
+      <td>{{products.releaseDate}}</td>
+      <td>{{products.price}}</td>
+      <td>{{products.starRating}}</td>
+    </tr>
+  </tbody>
+</table>
