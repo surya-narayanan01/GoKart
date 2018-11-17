@@ -11,16 +11,19 @@
     <div class="level-item">
       <div class="field has-addons">
         <p class="control">
-          <input class="input" type="text" placeholder="Find a product">
+          <input [(ngModel)]='filterByText' class="input" type="text" placeholder="Find a product">
         </p>
+
       </div>
     </div>
+  </div>
+  <div *ngIf='filterByText' class="level-left"><strong>keyword : {{filterByText}}</strong>
   </div>
 </section>
 <table class="table is-bordered is-fullwidth is-hoverable" *ngIf='gokartProductList && gokartProductList.length'>
   <thead>
     <tr>
-      <th><button class="button is-rounded is-danger is-outlined">Show Image</button></th>
+      <th><button class="button is-rounded is-danger is-outlined" (click)='showRefurbishedImg()'>Check if Certified</button></th>
       <th>Product</th>
       <th>Code</th>
       <th>Available</th>
@@ -30,12 +33,15 @@
   </thead>
   <tbody>
     <!-- to be populated from gokart-list.component.ts -->
-    <tr *ngFor='let products of gokartProductList'>
-      <td></td>
+    <tr *ngFor='let products of filteredProducts'>
+      <td>
+        <img *ngIf='refurbishedShow' [src]='products.refurbishUrl' [title]='products.productName' [style.width.px]='imageWidth'
+          [style.margin.px]='imageMargin'>
+      </td>
       <td>{{products.productName}}</td>
-      <td>{{products.productCode}}</td>
+      <td>{{products.productCode | ConvertToSpaces:'-'}}</td>
       <td>{{products.releaseDate}}</td>
-      <td>{{products.price}}</td>
+      <td>{{products.price | currency: 'INR'}}</td>
       <td>{{products.starRating}}</td>
     </tr>
   </tbody>
